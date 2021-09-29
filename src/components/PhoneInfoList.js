@@ -10,6 +10,8 @@ class PhoneInfoList extends Component {
     render() {
         const { data , onRemove , onUpdate } = this.props;  //data 값을 props 로받아옴   //비구조화 할당
 
+        console.log('rendering list');
+
         //if (!data) return null;
         const list = data.map(      // data 라는 배열을 가져와서 map 함수를 통하여 JSX 로 변환
             info => (

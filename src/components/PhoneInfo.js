@@ -8,12 +8,19 @@ class PhoneInfo extends Component {
         phone: '',
     }
 
+    shouldComponentUpdate(nextProps, nextState){           //불변성 유지가 중요
+        if(this.state !== nextState){
+            return true;
+        }
+        return this.props.info !== nextProps.info;
+    }
+
     handleRemove = () => {
         const { info, onRemove } = this.props;
         onRemove(info.id);
     }
 
-    handleRoggleEdit = () => {
+    handleRoggleEdit = () => {         
         //true -> false
             //onUpdate
         //fasle -> true
@@ -53,11 +60,13 @@ class PhoneInfo extends Component {
             margine: '8px',
         };
 
+        console.log(name);
+
         return (
             <div style={style}>
                 {
                     editing ? (
-                        <Fragment>
+                        <Fragment /*모든 컴포넌트는 무언가에 의해서 감싸져있어야함*/>      
                             <div>
                                 <input
                                     name="name"
